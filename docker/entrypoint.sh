@@ -60,10 +60,7 @@ elif [ "$role" = "app" ]; then
         php artisan cache:clear && php artisan config:cache && php artisan route:cache && php artisan view:cache
     fi
 
-    exec php-fpm
+    php artisan serve --host=0.0.0.0 --port=8000
 else
-    echo "Could not match the container role \"$role\""
-    exit 1
+        exit 1
 fi
-php artisan migrate --force
-php artisan serve --host=0.0.0.0 --port=8000
